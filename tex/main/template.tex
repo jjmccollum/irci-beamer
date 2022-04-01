@@ -1,0 +1,63 @@
+\documentclass[11pt]{beamer}
+
+\title{A Beamer Template for the IRCI}% specify full title in curly braces, short title in brackets
+\subtitle{with Examples} % specify subtitle, if any
+\date{\today}% specify full event/date in curly braces, short version in brackets
+\author{Joey McCollum}% specify author
+\institute{Institute for Religion and Critical Inquiry\\Australian Catholic University}% specify author institution
+
+\usetheme{irci}
+%\usefonttheme{serif} % if you want to use serif, uncomment this
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	\section{Examples}
+	\subsection{Lists}
+	\begin{frame}
+		\frametitle{Slide Title}
+		\framesubtitle{Subtitle}
+		An itemized list follows:
+		\begin{itemize}
+			\item Level 1
+			\begin{itemize}
+				\item Level 2
+				\begin{itemize}
+					\item Level 3
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+		\vspace{\baselineskip}
+
+		An enumerated list follows:
+		\begin{enumerate}
+			\item Level 1
+			\begin{enumerate}
+				\item Level 2
+				\begin{enumerate}
+					\item Level 3
+				\end{enumerate}
+			\end{enumerate}
+		\end{enumerate}
+	\end{frame}
+	\subsection{Quotes}
+	\begin{frame}
+		Block quotes are also supported:
+		\begin{quote}
+			How an actual quote should be defined. Blockquote tags should only be used for `quoted' content, because they are presented from paragraphs by screen readers.
+		\end{quote}
+	\end{frame}
+	\subsection{Math}
+	\begin{frame}
+		Inline math, such as $e^{\pi i} = -1$, is possible.\par
+		\vspace{\baselineskip}
+
+		Formulas in their own environments also work in the usual way:
+		\begin{equation}
+			P(A|B)=\frac{P(B|A)P(A)}{P(B)}
+		\end{equation}
+	\end{frame}
+	
+
+\end{document}
