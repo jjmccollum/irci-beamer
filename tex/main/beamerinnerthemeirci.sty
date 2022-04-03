@@ -5,46 +5,48 @@
 \definecolor{Purple100}{RGB}{60,16,83}
 \definecolor{Sand}{RGB}{232,227,219}
 
+\RequirePackage{adjustbox} % for trimming background images to fit aspect ratio
+
 %Background pattern template
 \setbeamertemplate{background}{
 	% If the current slide is not the title slide, then use a simpler layout
 	\ifnum\thepage>1\relax
-		\usebackgroundtemplate{%
-			\begin{tikzpicture}[remember picture, overlay]
-		 		\node[inner sep=0pt] at (current page.center){\includegraphics[height=\paperheight]{../img/title-background.jpeg}};%
-			\end{tikzpicture}
-		}
+		\begin{tikzpicture}
+			\fill[white,opacity=1] (0,0) rectangle (\the\paperwidth,\the\paperheight);%
+			\fill[color=Sand] (0,\the\paperheight) --  (11/20*\the\paperwidth,\the\paperheight) --  (\the\paperwidth/2,14/15*\the\paperheight) -- (0,14/15*\the\paperheight) -- cycle;% top border polygon
+			\fill[color=Sand] (\the\paperwidth/2,0) -- (11/20*\the\paperwidth,\the\paperheight/15) --  (\the\paperwidth,\the\paperheight/15) --  (\the\paperwidth,0) -- cycle;% bottom border polygon
+			% Insert the content slide logo in the upper-right corner
+			\node[anchor=south east,inner sep=0pt] (logo) at (\the\paperwidth,24/27*\the\paperheight) {\includegraphics[height=0.0741\paperheight]{../img/irci-logo.pdf}};
+		\end{tikzpicture}
 	\else
-		\usebackgroundtemplate{%
-			\begin{tikzpicture}[remember picture, overlay]
-				\fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);%
-				\fill[color=Sand] (0,\the\paperheight) --  (11/20*\the\paperwidth,\the\paperheight) --  (\the\paperwidth/2,14/15*\the\paperheight) -- (0,14/15*\the\paperheight) -- cycle;% top border polygon
-				\fill[color=Sand] (\the\paperwidth/2,0) -- (11/20*\the\paperwidth,\the\paperheight/15) --  (\the\paperwidth,\the\paperheight/15) --  (\the\paperwidth,0) -- cycle;% bottom border polygon
-				% Insert the content slide logo over it
-				\node[inner sep=0pt] (content_logo) at (7/9*\the\paperwidth,5/6*\the\paperheight) {\includegraphics[width=0.2\textwidth]{../img/irci-logo.pdf}};%
-			\end{tikzpicture}
-		}
+		\begin{tikzpicture}
+			\node[anchor=south west,inner sep=0pt] (bg) at (0,0) {\adjincludegraphics[height=\paperheight,Clip={0.8889\paperheight-0.5\paperwidth} 0]{../img/title-background.jpeg}};
+			\node[anchor=south east,inner sep=0pt] (logo) at (\the\paperwidth,1/27*\the\paperheight) {\includegraphics[height=0.0741\paperheight]{../img/irci-logo.pdf}};
+		\end{tikzpicture}
 	\fi
 }
 
 % Title page template
-\defbeamertemplate*{title page}{irci}[1][]
+\setbeamertemplate{title page}
 {
-	\vskip0.1\paperheight%
-	\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.55\paperwidth,#1]{title page header}
-		{\usebeamerfont{title}\inserttitle}\par%
-		\vskip0.05\paperheight%
-		{\usebeamerfont{subtitle}\insertsubtitle}\par%
-		\vskip0.15\paperheight%
-		{\usebeamerfont{author}\insertauthor}\par%
-		\ifx\insertinstitute\@empty% if there is an author institution, then add only the frame title
-			% do nothing
-		\else
-			{\usebeamerfont{institute}\insertinstitute}\par%
-		\fi
-		{\usebeamerfont{date}\insertdate}\par%
-	\end{beamercolorbox}%
-	\vfill
+	\begin{columns}[T]
+		\begin{column}{0.5\paperwidth}
+				\usebeamercolor[fg]{title page header}%
+				{\usebeamerfont{title}\inserttitle}\par%
+				{\usebeamerfont{subtitle}\insertsubtitle}\par%
+		\end{column}
+		\begin{column}{0.4\paperwidth}
+				\vskip0.1111\paperheight% to offset the second column's text vertically
+				\usebeamercolor[fg]{title page header}%
+				{\usebeamerfont{author}\insertauthor}\par%
+				\ifx\insertinstitute\@empty% if there is no author institution, then add only the date
+					% do nothing
+				\else
+					{\usebeamerfont{institute}\insertinstitute}\par%
+				\fi
+				{\usebeamerfont{date}\insertdate}\par%
+		\end{column}
+	\end{columns}
 }
 
 \mode
