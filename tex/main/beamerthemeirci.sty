@@ -60,7 +60,8 @@
 	leftmargin=0em, % align the bar of the frame with the rest of the text
 	innerleftmargin=0.5em
 ]{quote}
-% Theme fonts
+
+% Theme fonts (comment this section out and replace it with \def\titlingfont{\sffamily} if you want to use plain LaTeX)
 \RequirePackage{fontspec}
 \defaultfontfeatures{Scale=MatchLowercase}
 % Serif font
@@ -86,14 +87,16 @@
 	\def\titlingfont{\sffamily}
 }
 % Math font
-\usepackage[mathup=sym]{unicode-math}
+\RequirePackage[mathup=sym]{unicode-math}
 \setmathfont{Latin Modern Math} % use the default LaTeX math font
+
 % Font sizes for text elements
 \setbeamerfont{title}{size=\LARGE,family=\titlingfont,series=\bfseries} % title in large font, titling, and bold
 \setbeamerfont{subtitle}{size=\normalsize,family=\titlingfont} % subtitle slightly smaller, titling
 \setbeamerfont{author}{size=\normalsize,family=\titlingfont,series=\bfseries} % author slightly smaller, titling, and bold
 \setbeamerfont{institute}{size=\normalsize,family=\titlingfont} % institution slightly smaller, titling
 \setbeamerfont{date}{size=\normalsize,family=\titlingfont} % date/event slightly smaller, titling
+\setbeamerfont{section title}{size=\LARGE,family=\titlingfont,series=\bfseries} % for section title in section frame
 \setbeamerfont{section}{size=\normalsize,family=\titlingfont,series=\bfseries} % section slightly smaller, sans serif, and bold
 \setbeamerfont{subsection}{size=\normalsize,family=\titlingfont} % subsection slightly smaller, sans serif
 \setbeamerfont{frametitle}{size=\Large,family=\titlingfont,series=\bfseries} % frame title in large font, titling, and bold
